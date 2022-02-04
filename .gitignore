@@ -1,0 +1,10 @@
+target/
+build/
+.project
+.settings/
+.classpath
+.idea/
+.gradle/
+*.iml
+.DS_Store
+!gradle/wrapper/*
