@@ -1,0 +1,31 @@
+{
+  "commonCapabilities": {
+    "project": "Java MultiPlatform",
+    "build": "Scenario",
+    "browserstack.debug": true,
+    "browserstack.networkLogs": true,
+    "includeSafariInWebviews": true
+  },
+  "capabilities": [
+    {
+      "device": "iPhone 11 Pro",
+      "os_version": "13"
+    },
+    {
+      "device": "iPhone 11 Pro Max",
+      "os_version": "13"
+    },
+    {
+      "device": "iPhone 12 Pro",
+      "os_version": "14"
+    },
+    {
+      "device": "iPhone 12 Pro Max",
+      "os_version": "14"
+    },
+    {
+      "device": "iPhone SE 2020",
+      "os_version": "13"
+    }
+  ]
+}
