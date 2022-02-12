@@ -104,6 +104,7 @@ Steps performed during the execution of the test are mentioned below.
 
 ## Notes
 - You can view your App-Automate test results on the [BrowserStack App-Automate dashboard](https://app-automate.browserstack.com/).
+- Additional details available in [this](https://browserstack.atlassian.net/wiki/spaces/CE/pages/3387883687/Automate+a+Real+E2E+User+Flow+Browser+App) confluence documentation.
 - Apps used to test on Android:
     - [Wikipedia Sample App](https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk)
     - Chrome Mobile App
