@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.Map;
 
 import static org.openqa.selenium.Keys.TAB;
 import static org.openqa.selenium.Keys.ENTER;
@@ -20,6 +21,7 @@ import static org.testng.Assert.assertEquals;
 public class SafariE2eTest extends BaseTest {
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testAppBrowserE2e() {
         IOSDriver<MobileElement> driver = getIOSDriver();
         Wait<IOSDriver<MobileElement>> wait = new FluentWait<>(driver)
@@ -34,13 +36,15 @@ public class SafariE2eTest extends BaseTest {
 
         driver.activateApp("com.apple.mobilesafari");
         wait.until(d -> d.getContextHandles().size() > 1);
-        for (String context : driver.getContextHandles()) {
-            if (context.contains("WEBVIEW")) {
-                driver.context(context);
+        for (Object context : driver.getContextHandles()) {
+            Map<String, String> contextMap = (Map<String, String>) context;
+            if (contextMap.getOrDefault("bundleId", "").equals("com.apple.mobilesafari")) {
+                driver.context(contextMap.get("id"));
             }
         }
 
         driver.get("https://bstackdemo.com");
+        System.out.println(driver.getContextHandles());
         wait.until(elementToBeClickable(By.id("signin"))).click();
         wait.until(elementToBeClickable(By.cssSelector("#username input"))).sendKeys("fav_user" + TAB);
         driver.findElement(By.cssSelector("#password input")).sendKeys("testingisfun99" + TAB);

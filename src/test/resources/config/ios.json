@@ -4,7 +4,8 @@
     "build": "Scenario",
     "browserstack.debug": true,
     "browserstack.networkLogs": true,
-    "includeSafariInWebviews": true
+    "includeSafariInWebviews": true,
+    "fullContextList": true
   },
   "capabilities": [
     {
