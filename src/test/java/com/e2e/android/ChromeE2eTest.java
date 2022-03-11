@@ -81,7 +81,7 @@ public class ChromeE2eTest {
     }
 
     @Test
-    public void testCrossApp() {
+    public void appBrowserE2eFlow() {
         AndroidDriver<MobileElement> driver = driverThread.get();
         Wait<AndroidDriver<MobileElement>> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))

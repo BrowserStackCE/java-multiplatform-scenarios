@@ -21,7 +21,7 @@ public class ChromeE2eTest extends BaseTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testAppBrowserE2e() {
+    public void appBrowserE2eFlow() {
         IOSDriver<MobileElement> driver = getIOSDriver();
         Wait<IOSDriver<MobileElement>> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))

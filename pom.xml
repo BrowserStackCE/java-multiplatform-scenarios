@@ -13,6 +13,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <appium.version>7.5.1</appium.version>
+        <testng.version>7.4.0</testng.version>
+        <restassured.version>4.3.3</restassured.version>
         <threads>5</threads>
     </properties>
 
@@ -21,19 +24,19 @@
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>7.5.1</version>
+            <version>${appium.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.4.0</version>
+            <version>${testng.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>4.3.3</version>
+            <version>${restassured.version}</version>
         </dependency>
     </dependencies>
 
