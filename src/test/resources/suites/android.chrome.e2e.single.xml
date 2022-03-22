@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Android Suite">
+    <test name="Android Test">
+        <parameter name="capability" value="0"/>
+        <classes>
+            <class name="com.e2e.android.ChromeE2eTest"/>
+        </classes>
+    </test>
+</suite>
