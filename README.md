@@ -16,45 +16,45 @@ Steps performed during the execution of the test are mentioned below.
   ```sh
   export BROWSERSTACK_USERNAME=<browserstack-username> && export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
   ```
-- Clone the repo
-- Install dependencies
+- Clone the repo.
+- Install dependencies.
   ```
   mvn compile
   ```
-- Update the environment variables with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
+- Update the environment variables with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings).
 
 ### Running your tests
 
 #### Android
 
-- Run a single end-to-end test using Chrome mobile browser
+- Run a single end-to-end test using Chrome mobile browser.
   ```
   mvn -P android-chrome-e2e-single test
   ```
 
-- Run parallel end-to-end tests using Chrome mobile browser
+- Run parallel end-to-end tests using Chrome mobile browser.
   ```
   mvn -P android-chrome-e2e-parallel test
   ```
 
 #### iOS
 
-- Run a single end-to-end test using Safari mobile browser
+- Run a single end-to-end test using Safari mobile browser.
   ```
   mvn -P ios-safari-e2e-single test
   ```
 
-- Run parallel end-to-end tests using Safari mobile browser
+- Run parallel end-to-end tests using Safari mobile browser.
   ```
   mvn -P ios-safari-e2e-parallel test
   ```
 
-- Run a single end-to-end test using Chrome mobile browser
+- Run a single end-to-end test using Chrome mobile browser.
   ```
   mvn -P ios-chrome-e2e-single test
   ```
 
-- Run parallel end-to-end tests using Chrome mobile browser
+- Run parallel end-to-end tests using Chrome mobile browser.
   ```
   mvn -P ios-chrome-e2e-parallel test
   ```
@@ -63,52 +63,51 @@ Steps performed during the execution of the test are mentioned below.
 
 ### Setup
 
-- Clone the repo
-- Install dependencies
+- Clone the repo.
+- Install dependencies.
   ```
   ./gradlew build
   ```
-- Update the environment variables with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
+- Update the environment variables with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings).
 
 ### Running your tests
 
 #### Android
 
-- Run a single end-to-end test using Chrome mobile browser
+- Run a single end-to-end test using Chrome mobile browser.
   ```
   ./gradlew android-chrome-e2e-single
   ```
 
-- Run parallel end-to-end tests using Chrome mobile browser
+- Run parallel end-to-end tests using Chrome mobile browser.
   ```
   ./gradlew android-chrome-e2e-parallel
   ```
 
 #### iOS
 
-- Run a single end-to-end test using Safari mobile browser
+- Run a single end-to-end test using Safari mobile browser.
   ```
   ./gradlew ios-safari-e2e-single
   ```
 
-- Run parallel end-to-end tests using Safari mobile browser
+- Run parallel end-to-end tests using Safari mobile browser.
   ```
   ./gradlew ios-safari-e2e-parallel
   ```
 
-- Run a single end-to-end test using Chrome mobile browser
+- Run a single end-to-end test using Chrome mobile browser.
   ```
   ./gradlew ios-chrome-e2e-single
   ```
 
-- Run parallel end-to-end tests using Chrome mobile browser
+- Run parallel end-to-end tests using Chrome mobile browser.
   ```
   ./gradlew ios-chrome-e2e-parallel
   ```
 
 ## Notes
 - You can view your App-Automate test results on the [BrowserStack App-Automate dashboard](https://app-automate.browserstack.com/).
-- Additional details available in [this](https://browserstack.atlassian.net/wiki/spaces/CE/pages/3387883687/Automate+a+Real+E2E+User+Flow+Browser+App) confluence documentation.
 - Apps used to test on Android:
     - [Wikipedia Sample App](https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk)
     - Chrome Mobile App
