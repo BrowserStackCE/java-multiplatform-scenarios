@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Android Suite">
+    <parameter name="config" value="android"/>
     <test name="Android Test 1">
         <parameter name="capability" value="0"/>
         <classes>

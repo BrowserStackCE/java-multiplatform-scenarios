@@ -22,7 +22,6 @@ dependencies {
 tasks.register('android-chrome-e2e-single', Test) {
     useTestNG() {
         suites 'src/test/resources/suites/android.chrome.e2e.single.xml'
-        systemProperty 'config', 'android'
     }
     testLogging {
         events "PASSED", "FAILED", "SKIPPED"
@@ -32,7 +31,6 @@ tasks.register('android-chrome-e2e-single', Test) {
 tasks.register('android-chrome-e2e-parallel', Test) {
     useTestNG() {
         suites 'src/test/resources/suites/android.chrome.e2e.parallel.xml'
-        systemProperty 'config', 'android'
         parallel project.property('parallel')
         threadCount Integer.parseInt(project.property('threads'))
     }
@@ -44,7 +42,6 @@ tasks.register('android-chrome-e2e-parallel', Test) {
 tasks.register('ios-safari-e2e-single', Test) {
     useTestNG() {
         suites 'src/test/resources/suites/ios.safari.e2e.single.xml'
-        systemProperty 'config', 'ios'
     }
     testLogging {
         events "PASSED", "FAILED", "SKIPPED"
@@ -54,7 +51,6 @@ tasks.register('ios-safari-e2e-single', Test) {
 tasks.register('ios-safari-e2e-parallel', Test) {
     useTestNG() {
         suites 'src/test/resources/suites/ios.safari.e2e.parallel.xml'
-        systemProperty 'config', 'ios'
         parallel project.property('parallel')
         threadCount Integer.parseInt(project.property('threads'))
     }
@@ -66,7 +62,6 @@ tasks.register('ios-safari-e2e-parallel', Test) {
 tasks.register('ios-chrome-e2e-single', Test) {
     useTestNG() {
         suites 'src/test/resources/suites/ios.chrome.e2e.single.xml'
-        systemProperty 'config', 'ios'
     }
     testLogging {
         events "PASSED", "FAILED", "SKIPPED"
@@ -76,7 +71,6 @@ tasks.register('ios-chrome-e2e-single', Test) {
 tasks.register('ios-chrome-e2e-parallel', Test) {
     useTestNG() {
         suites 'src/test/resources/suites/ios.chrome.e2e.parallel.xml'
-        systemProperty 'config', 'ios'
         parallel project.property('parallel')
         threadCount Integer.parseInt(project.property('threads'))
     }
