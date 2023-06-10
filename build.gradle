@@ -19,62 +19,6 @@ dependencies {
     implementation 'io.rest-assured:rest-assured:4.3.3'
 }
 
-tasks.register('android-chrome-e2e-single', Test) {
-    useTestNG() {
-        suites 'src/test/resources/suites/android.chrome.e2e.single.xml'
-    }
-    testLogging {
-        events "PASSED", "FAILED", "SKIPPED"
-    }
-}
-
-tasks.register('android-chrome-e2e-parallel', Test) {
-    useTestNG() {
-        suites 'src/test/resources/suites/android.chrome.e2e.parallel.xml'
-        parallel project.property('parallel')
-        threadCount Integer.parseInt(project.property('threads'))
-    }
-    testLogging {
-        events "PASSED", "FAILED", "SKIPPED"
-    }
-}
-
-tasks.register('ios-safari-e2e-single', Test) {
-    useTestNG() {
-        suites 'src/test/resources/suites/ios.safari.e2e.single.xml'
-    }
-    testLogging {
-        events "PASSED", "FAILED", "SKIPPED"
-    }
-}
-
-tasks.register('ios-safari-e2e-parallel', Test) {
-    useTestNG() {
-        suites 'src/test/resources/suites/ios.safari.e2e.parallel.xml'
-        parallel project.property('parallel')
-        threadCount Integer.parseInt(project.property('threads'))
-    }
-    testLogging {
-        events "PASSED", "FAILED", "SKIPPED"
-    }
-}
-
-tasks.register('ios-chrome-e2e-single', Test) {
-    useTestNG() {
-        suites 'src/test/resources/suites/ios.chrome.e2e.single.xml'
-    }
-    testLogging {
-        events "PASSED", "FAILED", "SKIPPED"
-    }
-}
-
-tasks.register('ios-chrome-e2e-parallel', Test) {
-    useTestNG() {
-        suites 'src/test/resources/suites/ios.chrome.e2e.parallel.xml'
-        parallel project.property('parallel')
-        threadCount Integer.parseInt(project.property('threads'))
-    }
-    testLogging {
-        events "PASSED", "FAILED", "SKIPPED"
-    }
+tasks.named('test', Test) {
+    useTestNG()
 }
