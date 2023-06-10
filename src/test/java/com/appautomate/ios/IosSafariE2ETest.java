@@ -1,7 +1,7 @@
-package com.e2e.ios;
+package com.appautomate.ios;
 
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NotFoundException;
@@ -12,19 +12,19 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.Map;
 
-import static org.openqa.selenium.Keys.TAB;
 import static org.openqa.selenium.Keys.ENTER;
+import static org.openqa.selenium.Keys.TAB;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 import static org.testng.Assert.assertEquals;
 
-public class SafariE2eTest extends BaseTest {
+public class IosSafariE2ETest extends BaseTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void appBrowserE2eFlow() {
-        IOSDriver<MobileElement> driver = getIOSDriver();
-        Wait<IOSDriver<MobileElement>> wait = new FluentWait<>(driver)
+    public void iosAppSafariE2eFlow() {
+        IOSDriver<IOSElement> driver = getIOSDriver();
+        Wait<IOSDriver<IOSElement>> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .ignoring(NotFoundException.class);
 
@@ -44,7 +44,6 @@ public class SafariE2eTest extends BaseTest {
         }
 
         driver.get("https://bstackdemo.com");
-        System.out.println(driver.getContextHandles());
         wait.until(elementToBeClickable(By.id("signin"))).click();
         wait.until(elementToBeClickable(By.cssSelector("#username input"))).sendKeys("fav_user" + TAB);
         driver.findElement(By.cssSelector("#password input")).sendKeys("testingisfun99" + TAB);

@@ -1,30 +1,28 @@
-package com.e2e.android;
+package com.appautomate.android;
 
+import com.utlis.AppUtils;
+import com.utlis.SessionUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.path.json.JsonPath;
+import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 
-import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static io.restassured.RestAssured.*;
 import static java.util.stream.Collectors.toList;
 import static org.openqa.selenium.Keys.TAB;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
@@ -32,58 +30,39 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class ChromeE2eTest {
-
-    private static final ThreadLocal<AndroidDriver<MobileElement>> driverThread = new ThreadLocal<>();
+public class AndroidE2ETest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String URL = "https://hub-cloud.browserstack.com/wd/hub";
+    private static final String HUB_URL = "https://hub.browserstack.com/wd/hub";
+    private AndroidDriver<AndroidElement> driver;
 
     @BeforeSuite(alwaysRun = true)
     public void setupApp() {
-        PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName(USERNAME);
-        authenticationScheme.setPassword(ACCESS_KEY);
-        requestSpecification = new RequestSpecBuilder()
-                .setBaseUri("https://api-cloud.browserstack.com")
-                .setBasePath("app-automate")
-                .setAuth(authenticationScheme)
-                .build();
-        responseSpecification = new ResponseSpecBuilder()
-                .expectStatusCode(200)
-                .build();
-        List<String> customIds = get("recent_apps").jsonPath().getList("custom_id");
-        if (customIds == null || !customIds.contains("AndroidDemoApp")) {
-            System.out.println("Uploading app...");
-            given()
-                    .header("Content-Type", "multipart/form-data")
-                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk", "text")
-                    .param("custom_id", "AndroidDemoApp")
-                    .post("upload");
-        } else {
-            System.out.println("Using previously uploaded app...");
-        }
+        AppUtils.uploadApp("AndroidDemoApp", "android/WikipediaSample.apk");
     }
 
     @BeforeMethod(alwaysRun = true)
-    @Parameters({"config", "capability"})
-    public void setupDriver(String configFile, String capability, Method m) throws MalformedURLException {
-        JsonPath jsonPath = JsonPath.from(new File("src/test/resources/config/" + configFile + ".json"));
-        Map<String, String> capabilitiesMap = new HashMap<>();
-        capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
-        capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
-        capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("device"));
-        capabilitiesMap.put("app", "AndroidDemoApp");
-        capabilitiesMap.put("browserstack.user", USERNAME);
-        capabilitiesMap.put("browserstack.key", ACCESS_KEY);
-        driverThread.set(new AndroidDriver<>(new URL(URL), new DesiredCapabilities(capabilitiesMap)));
+    public void setupDriver(Method m) throws MalformedURLException {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("project", "Java MultiPlatform");
+        caps.setCapability("build", "Scenario");
+        caps.setCapability("name", m.getName());
+
+        caps.setCapability("device", "Google Pixel 7");
+        caps.setCapability("os_version", "13.0");
+        caps.setCapability("app", "AndroidDemoApp");
+
+        caps.setCapability("browserstack.user", USERNAME);
+        caps.setCapability("browserstack.key", ACCESS_KEY);
+
+        driver = new AndroidDriver<>(new URL(HUB_URL), caps);
     }
 
     @Test
-    public void appBrowserE2eFlow() {
-        AndroidDriver<MobileElement> driver = driverThread.get();
-        Wait<AndroidDriver<MobileElement>> wait = new FluentWait<>(driver)
+    @SuppressWarnings("unchecked")
+    public void androidAppChromeE2eFlow() {
+        Wait<AndroidDriver<AndroidElement>> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .ignoring(NotFoundException.class);
 
@@ -126,15 +105,8 @@ public class ChromeE2eTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult tr) {
-        AndroidDriver<MobileElement> driver = driverThread.get();
-        if (tr.isSuccess()) {
-            driver.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
-        } else {
-            String reason = tr.getThrowable().getMessage().split("\\n")[0].replaceAll("[\\\\{}\"]", "");
-            driver.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"" + reason + "\"}}");
-        }
+        SessionUtils.markSession(driver, tr);
         driver.quit();
-        driverThread.remove();
     }
 
 }

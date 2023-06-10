@@ -25,38 +25,19 @@ Steps performed during the execution of the test are mentioned below.
 
 ### Running your tests
 
-#### Android
-
-- Run a single end-to-end test using Chrome mobile browser.
+- Run end-to-end test on Android device using Chrome mobile browser.
   ```
-  mvn -P android-chrome-e2e-single test
+  mvn -Dtest=AndroidE2ETest test
   ```
 
-- Run parallel end-to-end tests using Chrome mobile browser.
+- Run end-to-end test on iOS device using Safari mobile browser.
   ```
-  mvn -P android-chrome-e2e-parallel test
-  ```
-
-#### iOS
-
-- Run a single end-to-end test using Safari mobile browser.
-  ```
-  mvn -P ios-safari-e2e-single test
+  mvn -Dtest=IosSafariE2ETest test
   ```
 
-- Run parallel end-to-end tests using Safari mobile browser.
+- Run end-to-end test on iOS device using Chrome mobile browser.
   ```
-  mvn -P ios-safari-e2e-parallel test
-  ```
-
-- Run a single end-to-end test using Chrome mobile browser.
-  ```
-  mvn -P ios-chrome-e2e-single test
-  ```
-
-- Run parallel end-to-end tests using Chrome mobile browser.
-  ```
-  mvn -P ios-chrome-e2e-parallel test
+  mvn -Dtest=IosSafariE2ETest test
   ```
 
 ## Using Gradle
@@ -72,38 +53,31 @@ Steps performed during the execution of the test are mentioned below.
 
 ### Running your tests
 
-#### Android
-
-- Run a single end-to-end test using Chrome mobile browser.
+- Run end-to-end test on Android device using Chrome mobile browser.
   ```
-  ./gradlew android-chrome-e2e-single
+  ./gradlew test --tests AndroidE2ETest
   ```
 
-- Run parallel end-to-end tests using Chrome mobile browser.
+- Run end-to-end test on iOS device using Safari mobile browser.
   ```
-  ./gradlew android-chrome-e2e-parallel
-  ```
-
-#### iOS
-
-- Run a single end-to-end test using Safari mobile browser.
-  ```
-  ./gradlew ios-safari-e2e-single
+  ./gradlew test --tests IosSafariE2ETest
   ```
 
-- Run parallel end-to-end tests using Safari mobile browser.
+- Run end-to-end test on iOS device using Chrome mobile browser.
   ```
-  ./gradlew ios-safari-e2e-parallel
-  ```
-
-- Run a single end-to-end test using Chrome mobile browser.
-  ```
-  ./gradlew ios-chrome-e2e-single
+  ./gradlew test --tests IosChromeE2ETest
   ```
 
-- Run parallel end-to-end tests using Chrome mobile browser.
+## Running your tests on Automate on iOS device in Chrome browser
+
+- Using Maven
   ```
-  ./gradlew ios-chrome-e2e-parallel
+  mvn -Dtest=IosChromeTest test
+  ```
+
+- Using Gradle
+  ```
+  ./gradlew test --tests IosChromeTest
   ```
 
 ## Notes

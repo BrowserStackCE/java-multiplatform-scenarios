@@ -1,7 +1,7 @@
-package com.e2e.ios;
+package com.appautomate.ios;
 
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -17,13 +17,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 import static org.testng.Assert.assertEquals;
 
-public class ChromeE2eTest extends BaseTest {
+public class IosChromeE2ETest extends BaseTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void appBrowserE2eFlow() {
-        IOSDriver<MobileElement> driver = getIOSDriver();
-        Wait<IOSDriver<MobileElement>> wait = new FluentWait<>(driver)
+    public void iosAppChromeE2eFlow() {
+        IOSDriver<IOSElement> driver = getIOSDriver();
+        Wait<IOSDriver<IOSElement>> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .ignoring(NotFoundException.class);
 
