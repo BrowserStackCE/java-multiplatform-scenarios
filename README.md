@@ -37,7 +37,7 @@ Steps performed during the execution of the test are mentioned below.
 
 - Run end-to-end test on iOS device using Chrome mobile browser.
   ```
-  mvn -Dtest=IosSafariE2ETest test
+  mvn -Dtest=IosChromeE2ETest test
   ```
 
 ## Using Gradle
